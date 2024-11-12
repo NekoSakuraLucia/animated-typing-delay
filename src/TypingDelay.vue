@@ -1,6 +1,8 @@
 <template>
     <component :is="wrapper" :style="{ transition: `all ${typingSpeed}ms ${easing}` }">
-        {{ displayText }}
+        <span v-for="(letter, index) in displayText" :key="index">
+            {{ letter }}
+        </span>
     </component>
 </template>
 
@@ -33,7 +35,7 @@ const props = defineProps({
     }
 });
 
-const displayText = ref("");
+const displayText = ref([]);
 const index = ref(0);
 const charIndex = ref(0);
 const isErasing = ref(false);
@@ -42,7 +44,10 @@ const typeText = () => {
     if (index.value >= props.text.length) index.value = 0;
     if (!isErasing.value) {
         if (charIndex.value < props.text[index.value].length) {
-            displayText.value += props.text[index.value][charIndex.value];
+            displayText.value = [
+                ...displayText.value,
+                props.text[index.value][charIndex.value]
+            ];
             charIndex.value++;
         } else {
             isErasing.value = true;
