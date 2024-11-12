@@ -1,5 +1,5 @@
 import typescript from "@rollup/plugin-typescript";
-import vue from "rollup-plugin-vue";
+import vue from "@vitejs/plugin-vue";
 
 export default {
   input: "src/index.ts",
@@ -13,8 +13,11 @@ export default {
       format: "cjs",
     },
   ],
-  plugins: [typescript({
-    tsconfig: "./tsconfig.json",
-  }), vue()],
+  plugins: [
+    vue(),
+    typescript({
+      tsconfig: "./tsconfig.json",
+    }),
+  ],
   external: ["vue"],
 };
