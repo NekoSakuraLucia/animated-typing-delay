@@ -13,6 +13,8 @@ export default {
       format: "cjs",
     },
   ],
-  plugins: [typescript(), vue()],
+  plugins: [typescript({
+    tsconfig: "./tsconfig.json",
+  }), vue()],
   external: ["vue"],
 };

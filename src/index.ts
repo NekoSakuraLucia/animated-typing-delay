@@ -1,1 +1,2 @@
-export { default as TypingDelay } from "./TypingDelay.vue";
+import TypingDelay from "./TypingDelay.vue";
+export default TypingDelay
