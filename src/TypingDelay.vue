@@ -1,6 +1,10 @@
 <template>
     <component :is="wrapper" :style="{ transition: `all ${typingSpeed}ms ${easing}` }">
-        <span v-for="(letter, index) in displayText" :key="index">
+        <span 
+        v-for="(letter, index) in displayText" 
+        :key="index"
+        :style="getLetterStyle(index)"
+        >
             {{ letter }}
         </span>
     </component>
@@ -39,6 +43,7 @@ const displayText = ref([]);
 const index = ref(0);
 const charIndex = ref(0);
 const isErasing = ref(false);
+const typingIndex = ref(-1);
 
 const typeText = () => {
     if (index.value >= props.text.length) index.value = 0;
@@ -48,9 +53,11 @@ const typeText = () => {
                 ...displayText.value,
                 props.text[index.value][charIndex.value]
             ];
+            typingIndex.value = charIndex.value;
             charIndex.value++;
         } else {
             isErasing.value = true;
+            typingIndex.value = -1;
         }
     } else {
         if (charIndex.value > 0) {
@@ -65,4 +72,12 @@ const typeText = () => {
 };
 
 setInterval(typeText, props.typingSpeed);
+
+const getLetterStyle = (letterIndex) => {
+    const isTyping = letterIndex === typingIndex.value;
+    return {
+        opacity: isTyping ? 0.5 : 1,
+        transition: `opacity ${props.typingSpeed}ms ${props.easing}`
+    }
+}
 </script>
