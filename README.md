@@ -14,6 +14,7 @@ import TypingDelay from "..."
        :eraseDelay="5000"
        :wrapper="'div'"
        :easing="'ease-in'"
+       :IsAnimation="true" <!-- true/false สำหรับเปิดปิดอนิเมชั่น opacity -->
      />
   </div>
 </template>
