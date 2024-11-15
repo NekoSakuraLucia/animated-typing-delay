@@ -3,12 +3,11 @@
   "version": "0.1.0",
   "type": "module",
   "description": "",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.esm.js",
+  "main": "dist/animated-typing-text.cjs.js",
+  "module": "dist/animated-typing-text.es.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "dev": "rollup -c -w",
-    "build": "rollup -c",
+    "build": "vite build & tsc --build",
     "type-check": "vue-tsc --noEmit"
   },
   "repository": {
@@ -29,6 +28,7 @@
   "homepage": "https://github.com/NekoSakuraLucia/animated-typing-delay#readme",
   "dependencies": {
     "@vue/runtime-dom": "^3.5.12",
+    "vite": "^5.4.11",
     "vue": "^3.5.12"
   },
   "devDependencies": {

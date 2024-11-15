@@ -49,10 +49,7 @@ const typeText = () => {
     if (index.value >= props.text.length) index.value = 0;
     if (!isErasing.value) {
         if (charIndex.value < props.text[index.value].length) {
-            displayText.value = [
-                ...displayText.value,
-                props.text[index.value][charIndex.value]
-            ];
+            displayText.value.push(props.text[index.value][charIndex.value])
             typingIndex.value = charIndex.value;
             charIndex.value++;
         } else {
