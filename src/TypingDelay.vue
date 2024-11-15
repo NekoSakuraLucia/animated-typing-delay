@@ -36,6 +36,10 @@ const props = defineProps({
         validator(value) {
             return ["ease-in", "ease-out", "ease-in-out", "ease-out-in", "ease-out-cubic"].includes(value);
         }
+    },
+    IsAnimation: {
+        type: Boolean,
+        default: true
     }
 });
 
@@ -72,9 +76,10 @@ setInterval(typeText, props.typingSpeed);
 
 const getLetterStyle = (letterIndex) => {
     const isTyping = letterIndex === typingIndex.value;
+    const opacity = props.IsAnimation ? (isTyping ? 0.5 : 1) : 1;
     return {
-        opacity: isTyping ? 0.5 : 1,
-        transition: `opacity ${props.typingSpeed}ms ${props.easing}`
+        opacity,
+        transition: props.IsAnimation ? `opacity ${props.typingSpeed}ms ${props.easing}` : 'none'
     }
 }
 </script>
